@@ -1,1 +1,1 @@
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly -p 8080:8080 narkisr/aptly aptly mirror update ubuntu-main-il
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror update ubuntu-main-il
