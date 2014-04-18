@@ -1,0 +1,1 @@
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly -p 8080:8080 narkisr/aptly aptly -architectures='amd64' mirror create -with-sources=false -ignore-signatures=true ubuntu-main-il http://il.archive.ubuntu.com/ubuntu/ raring main
