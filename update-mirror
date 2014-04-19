@@ -1,1 +1,6 @@
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror update $1
+for repo in main restricted universe multiverse
+do
+
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror update $1-$repo
+
+done
