@@ -1,0 +1,6 @@
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish drop $2
+
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot list | grep $1 | tr -s ' ' | cut -d ' ' -f 3 |
+  sed "s/\[//g" | sed "s/\]//g" | sed "s/\://g" | xargs sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot drop 
+
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror drop $1
