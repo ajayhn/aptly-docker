@@ -1,1 +1,1 @@
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly -architectures='amd64' mirror create -with-sources=false -ignore-signatures=true ubuntu-main-il http://il.archive.ubuntu.com/ubuntu/ raring main
+sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly -architectures='amd64,i386' mirror create -with-sources=false -ignore-signatures=true $1 http://il.archive.ubuntu.com/ubuntu/ $2 main
