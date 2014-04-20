@@ -2,6 +2,5 @@
 
 for repo in main restricted universe multiverse
 do
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly -architectures='amd64,i386' mirror create -with-sources=false -ignore-signatures=true $1-$repo http://il.archive.ubuntu.com/ubuntu/ $2 $repo
-
+ docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly -architectures='amd64,i386' mirror create -with-sources=false -ignore-signatures=true $1-$repo http://il.archive.ubuntu.com/ubuntu/ $2 $repo
 done

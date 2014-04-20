@@ -1,3 +1,7 @@
 timestamp=$(date +%s)
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot create $1-$timestamp from mirror $1
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish snapshot $1-$timestamp
+
+for repo in main restricted universe multiverse
+do
+ docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot create $1-$repo-$timestamp from mirror $1-$repo
+ docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish snapshot $1-$repo-$timestamp
+done
