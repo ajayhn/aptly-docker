@@ -1,6 +1,9 @@
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish drop $2
+# $1 - child repo name like ubuntu-saucy-restricted
+# $2 - parent repo name like saucy 
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish drop $1
 
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot list | grep $1 | tr -s ' ' | cut -d ' ' -f 3 |
-  sed "s/\[//g" | sed "s/\]//g" | sed "s/\://g" | xargs sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot drop 
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot list | grep $1 | tr -s ' ' | cut -d ' ' -f 3 | \
+sed "s/\[//g" | sed "s/\]//g" | sed "s/\://g" | \
+xargs -I repo docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot drop repo
 
-sudo docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror drop $1
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror drop $1

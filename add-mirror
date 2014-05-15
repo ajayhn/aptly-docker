@@ -1,6 +1,3 @@
-# Adds all Ubuntu mirrors for release $2 
+# Adds all Ubuntu mirrors for release $1 
 
-for repo in main restricted universe multiverse
-do
- docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly -architectures='amd64,i386' mirror create -with-sources=false -ignore-signatures=true $1-$repo http://il.archive.ubuntu.com/ubuntu/ $2 $repo
-done
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly -architectures='amd64,i386' mirror create -with-sources=false -ignore-signatures=true ubuntu http://il.archive.ubuntu.com/ubuntu/ $1 main restricted universe multiverse

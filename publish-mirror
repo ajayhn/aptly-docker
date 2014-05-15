@@ -1,7 +1,4 @@
+# $1 - parent repo name like ubuntu
 timestamp=$(date +%s)
-
-for repo in main restricted universe multiverse
-do
- docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot create $1-$repo-$timestamp from mirror $1-$repo
- docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish snapshot $1-$repo-$timestamp
-done
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot create $1-$timestamp from mirror $1-$repo
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish snapshot $1-$timestamp $1
