@@ -4,26 +4,31 @@ A dockerfile for setting up [aptly](http://www.aptly.info/)
 
 # Usage
 
+## Long manual way:
+
 ```bash
 $ git clone git://github.com/narkisr/aptly-docker.git
 $ sudo docker build -t narkisr/aptly .
 
-# for setting up Ubuntu mirrors
-$ sudo ./add-mirror saucy ubuntu
-$ sudo ./update-mirror ubuntu
-$ sudo ./publish-mirror ubuntu
+# for setting up Ubuntu mirrors for each component (main,restricted,universe,multiverse)
+$ sudo ./add-mirror ubuntu-saucy-main http://il.archive.ubuntu.com/ubuntu/ saucy main
+$ sudo ./update-mirror ubuntu-saucy-main
+$ sudo ./publish-mirror ubuntu-saucy-main
 
-$ sudo ./add-mirror ubuntu-updates saucy-updates 
-$ sudo ./update-mirror ubuntu-updates
-$ sudo ./publish-mirror ubuntu-updates
+$ sudo ./add-mirror ubuntu-saucy-restricted http://il.archive.ubuntu.com/ubuntu/ saucy restricted
+$ sudo ./update-mirror ubuntu-saucy-restricted
+$ sudo ./publish-mirror ubuntu-saucy-restricted
+# .. the same the universe/multiverse components
 
-$ sudo ./add-mirror ubuntu-backports saucy-backports 
-$ sudo ./update-mirror ubuntu-backports
-$ sudo ./publish-mirror ubuntu-backports
+# now repeat for updates and backports repos .. 
+```
 
-$ sudo ./add-mirror ubuntu-security saucy-security 
-$ sudo ./update-mirror ubuntu-security
-$ sudo ./publish-mirror ubuntu-security
+## Automated
+
+```bash
+$ rake add_all[saucy,http://il.archive.ubuntu.com/ubuntu/]
+$ rake add_all[saucy-backports,http://il.archive.ubuntu.com/ubuntu/]
+$ rake add_all[saucy-updates,http://il.archive.ubuntu.com/ubuntu/]
 ```
 
 # Copyright and license

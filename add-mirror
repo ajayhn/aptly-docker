@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # $1 - mirror name
 # $2 - url (http://il.archive.ubuntu.com/ubuntu/)
 # $3 - distro (suacy)
