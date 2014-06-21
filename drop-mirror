@@ -1,9 +1,15 @@
-# $1 - child repo name like ubuntu-saucy-restricted
-# $2 - parent repo name like saucy 
-docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish drop $1
+# $1 - prefix (ubuntu)
+# $2 - distro (saucy)
+# $3 - mirror name (ubuntu-saucy)
+prefix=$1
+distro=$2
+name=$3
 
-docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot list | grep $1 | tr -s ' ' | cut -d ' ' -f 3 | \
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly publish drop $distro $prefix
+
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot list | grep /$prefix-.*/ | \
+tr -s ' ' | cut -d ' ' -f 3 | \
 sed "s/\[//g" | sed "s/\]//g" | sed "s/\://g" | \
 xargs -I repo docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly snapshot drop repo
 
-docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror drop $1
+docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror drop $name

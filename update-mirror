@@ -1,1 +1,3 @@
-docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror update $1
+# $1 - mirror name
+name=$1
+docker run -n -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror update $name

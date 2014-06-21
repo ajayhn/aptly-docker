@@ -8,8 +8,22 @@ A dockerfile for setting up [aptly](http://www.aptly.info/)
 $ git clone git://github.com/narkisr/aptly-docker.git
 $ sudo docker build -t narkisr/aptly .
 
-$ ./add-mirror
-$ ./update-mirror
+# for setting up Ubuntu mirrors
+$ sudo ./add-mirror saucy ubuntu
+$ sudo ./update-mirror ubuntu
+$ sudo ./publish-mirror ubuntu
+
+$ sudo ./add-mirror ubuntu-updates saucy-updates 
+$ sudo ./update-mirror ubuntu-updates
+$ sudo ./publish-mirror ubuntu-updates
+
+$ sudo ./add-mirror ubuntu-backports saucy-backports 
+$ sudo ./update-mirror ubuntu-backports
+$ sudo ./publish-mirror ubuntu-backports
+
+$ sudo ./add-mirror ubuntu-security saucy-security 
+$ sudo ./update-mirror ubuntu-security
+$ sudo ./publish-mirror ubuntu-security
 ```
 
 # Copyright and license
