@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly \
+aptly -architectures='amd64,i386' repo list

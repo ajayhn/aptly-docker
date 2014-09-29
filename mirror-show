@@ -1,1 +1,1 @@
-docker run --net=bridge -v /media/ubuntu-mirror:/data/aptly narkisr/aptly aptly mirror show $1
+docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly aptly mirror show $1

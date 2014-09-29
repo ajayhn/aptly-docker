@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# $1 - repo name
+reponame=$1
+packages=$2
+docker run --net=bridge -v /aptly-data:/data/aptly -v ~/github-build:/github-build ajayhn/aptly \
+aptly -architectures='amd64,i386' repo add $reponame $packages

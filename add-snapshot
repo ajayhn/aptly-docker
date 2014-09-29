@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# $1 - snapshot name (e.g. opencontrail-r110-34)
+# $2 - source-type <mirror|repo> (e.g. repo)
+# $3 - source-name <mirror-name|repo-name> (e.g. opencontrail-r110)
+snapshotname=$1
+sourcetype=$2
+sourcename=$3
+
+docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly \
+aptly -architectures='amd64,i386' snapshot create $snapshotname from $sourcetype $sourcename

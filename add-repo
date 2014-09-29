@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# $1 - repo name
+reponame=$1
+docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly \
+aptly -architectures='amd64,i386' repo create $reponame

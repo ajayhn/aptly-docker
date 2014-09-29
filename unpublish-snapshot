@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# $1 - snapshot series (e.g. r110)
+docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly aptly -distribution=$2 publish drop $1 $1
