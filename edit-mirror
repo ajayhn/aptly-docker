@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# $1 - filters
+# $2 - mirror name
+# e.g. ./edit-mirror -filter='!Name (~ .*ifmap-server.*)' opencontrail-third-party
+filters=$1
+name=$2
+
+docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly \
+aptly -architectures='amd64,i386' mirror edit $filters $name
