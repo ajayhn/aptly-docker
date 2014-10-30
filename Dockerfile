@@ -8,6 +8,6 @@ RUN gpg -a --export 2A194991 | apt-key add -
 ADD aptly.conf /etc/aptly.conf
 
 RUN apt-get update
-RUN apt-get install aptly bzip2
+RUN apt-get install -y aptly bzip2 ca-certificates
 
 EXPOSE 8080

@@ -1,4 +1,16 @@
 #!/usr/bin/env bash
 # $1 - snapshot name (e.g. r110-34)
-# $2 - snapshot series (e.g. r110)
-docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly aptly -distribution=$2 publish snapshot $1 $2
+# $2 - distribution name (e.g. r110)
+# $3 - snapshot series (e.g. r110) or
+#      endpoint (e.g. s3:ubuntu-repo.opencontrail.org:).
+#        for s3 endpoint, need to invoke as
+#        AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar ./publish snapshot $1 $2 $3
+#
+# so full command could be:
+# AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar GPG_SECRET_KEY_FILE=$PWD/aptly-contrailbuild.sec ./publish-snapshot opencontrail-r120-stock-icehouse opencontrail-stock-icehouse s3:opencontrail:
+
+docker run --net=bridge \
+    -e "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" -e "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" \
+    -v /aptly-data:/data/aptly -v ${GPG_SECRET_KEY_FILE}:/aptly-gpg-key.sec -v ${PWD}/aptly.conf:/etc/aptly.conf \
+    -it ajayhn/aptly /bin/bash -c "gpg --import /aptly-gpg-key.sec && aptly -distribution=$2 publish snapshot $1 $3"
+    #-it ajayhn/aptly /bin/bash
