@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# $1 - snapshot name (e.g. opencontrail-r110-34)
+# $1 - snapshot name (e.g. opencontrail-r120-icehouse-63 or opencontrail-r120-stock-ubuntu1204-icehouse)
 snapshotname=$1
 
 docker run --net=bridge -v /aptly-data:/data/aptly ajayhn/aptly \
