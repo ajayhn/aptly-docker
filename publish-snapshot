@@ -7,7 +7,9 @@
 #        AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar ./publish snapshot $1 $2 $3
 #
 # so full command could be:
-# AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar GPG_SECRET_KEY_FILE=$PWD/aptly-contrailbuild.sec ./publish-snapshot opencontrail-r120-stock-icehouse opencontrail-stock-icehouse s3:opencontrail:
+# AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar GPG_SECRET_KEY_FILE=/path/to/aptly-contrailbuild.sec ./publish-snapshot opencontrail-r120-stock-ubuntu1204-icehouse opencontrail-stock-ubuntu1204-icehouse s3:opencontrail:
+# OR
+# AWS_ACCESS_KEY_ID=foo AWS_SECRET_ACCESS_KEY=bar GPG_SECRET_KEY_FILE=/path/to/aptly-contrailbuild.sec ./publish-snapshot opencontrail-r120-icehouse-63 opencontrail-r120-icehouse s3:opencontrail:
 
 docker run --net=bridge \
     -e "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" -e "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" \
