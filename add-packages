@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # $1 - repo name
+# $2 - package directory
+# for e.g ./add-packages opencontrail-r20 /github-build/R2.0/LATEST/ubuntu-14-04/icehouse/store/sandbox/build/packages/
 reponame=$1
 packages=$2
 docker run --net=bridge -v /aptly-data:/data/aptly -v ~/github-build:/github-build ajayhn/aptly \
